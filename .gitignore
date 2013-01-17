@@ -1,4 +1,5 @@
 node_modules
 *.log
+config/runtime.json
 config/production.*
 config/development.*

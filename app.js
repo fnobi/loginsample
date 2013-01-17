@@ -5,39 +5,44 @@
 var express       = require('express')
   , passport      = require('passport')
   , LocalStrategy = require('passport-local').Strategy
+  , mongoose      = require('mongoose')
+  , config        = require('config')
   , routes        = require('./routes')
   , http          = require('http')
   , path          = require('path');
 
-// 仮の、メモリに保存するタイプのUser
-var users = [
-	{
-		username: 'fnobi',
-		password: 'hogehoge'
-	}
-];
-var User = function () {};
-User.findOne = function (params, callback) {
-	var matchUser;
-	users.forEach(function (user) {
-		if (matchUser) {
-			return;
-		}
-		var isMatch = true;
-		for (var key in params) {
-			isMatch = isMatch && (user[key] == params[key]);
-		}
-		if (isMatch) {
-			matchUser = user;
-		}
-	});
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
-	if (matchUser) {
-		callback(null, matchUser);
-	} else {
-		callback('no matching user.');
+var UserSchema = new Schema({
+	username: String,
+	password: String
+});
+
+var User = mongoose.model('User', UserSchema);
+
+mongoose.connect(config.mongodb.uri);
+
+// var user = new User();
+// user.username = 'fnobi';
+// user.password = 'hogehoge';
+// user.save(function(err) {
+// 	if (err) { console.log(err); }
+// });
+
+User.findOne({
+	'username': 'fnobi'
+}, 'username password', function (err, user) {
+	if (err) {
+		console.error(err);
+		process.exit();
 	}
-};
+	console.log(
+		'%s:%s',
+		user.username,
+		user.password
+	);
+});
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
