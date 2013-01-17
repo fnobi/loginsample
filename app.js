@@ -5,45 +5,14 @@
 var express       = require('express')
   , passport      = require('passport')
   , LocalStrategy = require('passport-local').Strategy
-  , mongoose      = require('mongoose')
   , config        = require('config')
-  , routes        = require('./routes')
+  , routes        = require(__dirname + '/routes')
   , http          = require('http')
   , path          = require('path');
 
-var Schema = mongoose.Schema;
-var ObjectId = Schema.ObjectId;
+var models = require(__dirname + '/models');
 
-var UserSchema = new Schema({
-	username: String,
-	password: String
-});
-
-var User = mongoose.model('User', UserSchema);
-
-mongoose.connect(config.mongodb.uri);
-
-// var user = new User();
-// user.username = 'fnobi';
-// user.password = 'hogehoge';
-// user.save(function(err) {
-// 	if (err) { console.log(err); }
-// });
-
-User.findOne({
-	'username': 'fnobi'
-}, 'username password', function (err, user) {
-	if (err) {
-		console.error(err);
-		process.exit();
-	}
-	console.log(
-		'%s:%s',
-		user.username,
-		user.password
-	);
-});
-
+var User = models.User;
 passport.use(new LocalStrategy(
 	function(username, password, done) {
 		User.findOne(
@@ -71,7 +40,7 @@ passport.deserializeUser(function(username, done) {
 var app = express();
 
 app.configure(function(){
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', process.env.PORT || config.port || 3000);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 	app.use(express.favicon());
