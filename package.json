@@ -1,0 +1,29 @@
+{
+  "name": "joindebate",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.0rc3",
+    "jade": "*",
+    "config": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-twitter": "*",
+    "mongoose": "*",
+    "start-stop-daemon": "*"
+  },
+  "readmeFilename": "README.md",
+  "gitHead": "b588b422c54b9ac4961270bde60fbe4251e92fda",
+  "description": "joindebate ==========",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fnobi/joindebate.git"
+  },
+  "author": "Fujisawa Shin",
+  "license": "BSD"
+}

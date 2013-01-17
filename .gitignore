@@ -1,0 +1,4 @@
+node_modules
+*.log
+config/production.*
+config/development.*
