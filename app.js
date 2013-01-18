@@ -2,13 +2,14 @@
  * Module dependencies.
  */
 
-var express       = require('express')
-  , passport      = require('passport')
-  , LocalStrategy = require('passport-local').Strategy
-  , config        = require('config')
-  , routes        = require(__dirname + '/routes')
-  , http          = require('http')
-  , path          = require('path');
+var express         = require('express')
+  , passport        = require('passport')
+  , LocalStrategy   = require('passport-local').Strategy
+  , TwitterStrategy = require('passport-twitter').Strategy
+  , config          = require('config')
+  , routes          = require(__dirname + '/routes')
+  , http            = require('http')
+  , path            = require('path');
 
 var models = require(__dirname + '/models');
 
@@ -23,6 +24,25 @@ passport.use(new LocalStrategy(
 		);
 	}
 ));
+
+passport.use(new TwitterStrategy({
+	consumerKey: config.twitter.consummerKey,
+	consumerSecret: config.twitter.consumerSecret,
+	callbackURL: '/auth/twitter/callback'
+}, function(token, tokenSecret, profile, done) {
+	// User.findOrCreate(..., function(err, user) {
+	// 	if (err) { return done(err); }
+	// 	done(null, user);
+	// });
+
+	User.findOne(
+		{ username: 'fnobi' },
+		function (err, user) {
+			done(err, user);
+		}
+	);
+
+}));
 
 passport.serializeUser(function(user, done) {
 	done(null, user.username);
@@ -67,6 +87,12 @@ app.post('/login', passport.authenticate('local', {
 	res.redirect('/');
 });
 
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+	successRedirect: '/',
+        failureRedirect: '/login'
+}));
+
 app.get('/logout', function(req, res){
 	req.logout();
 	res.redirect('/');
@@ -74,6 +100,6 @@ app.get('/logout', function(req, res){
 
 require('start-stop-daemon')(function () {
 	http.createServer(app).listen(app.get('port'), function(){
-		console.log("Express server listening on port " + app.get('port'));
+		console.log('Express server listening on port ' + app.get('port'));
 	});
 });
