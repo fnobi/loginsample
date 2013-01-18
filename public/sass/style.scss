@@ -1,0 +1,83 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3";
+
+body {
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #c94;
+    color: #333;
+    line-height: 150%;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+div#wrap {
+    max-width: 600px;
+    margin: 0em auto;
+}
+
+header#header {
+    
+}
+
+#programs article {
+    background-color: rgba(255, 255, 255, 0.5);
+    @include border-radius(0.2em);
+    @include box-shadow(
+	black -0.1em -0.1em 0.2em inset,
+	white 0em 0em 2em inset
+    );
+
+    margin: 0em;
+    padding: 0.5em 0em;
+    overflow: hidden;
+    line-height: 100%;
+
+    width: auto;
+    height: 2em;
+
+    header {
+	float: left;
+	text-align: center;
+
+	width: 2em;
+	height: 2em;
+	margin: 0em;
+	padding: 0em 0.5em;
+
+	&:after {
+	    content: ' ';
+	    display: block;
+	    float: right;
+
+	    height: 2em;
+	    width: 0em;
+	    margin: 0em 0em 0em 0.2em;
+	    padding: 0em;
+
+	    border-right: solid 0.1em white;
+	    border-left: solid 0.1em black;
+	    background-color: white;
+	    @include opacity(0.4);
+	}
+    }
+
+    p {
+	display: block;
+	margin: 0em;
+	padding: 0em;
+    }
+
+    footer {
+	padding: 0em 0.5em;
+	text-align: right;
+    }
+}
+
