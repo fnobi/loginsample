@@ -1,7 +1,8 @@
 module.exports = {
 	port: 3000,
 	mongodb: {
-		uri: 'mongodb://localhost/joindebate'
+		host: 'localhost',
+		database: 'joindebate'
 	},
 	twitter: {
 		consummerKey: 'ppShngZALTe0K5QLS6PQ',

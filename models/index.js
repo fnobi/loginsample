@@ -11,8 +11,6 @@ var UserSchema = new Schema({
 
 var User = mongoose.model('User', UserSchema);
 
-mongoose.connect(config.mongodb.uri);
-
 // var user = new User();
 // user.username = 'fnobi';
 // user.password = 'hogehoge';
@@ -20,18 +18,18 @@ mongoose.connect(config.mongodb.uri);
 // 	if (err) { console.log(err); }
 // });
 
-User.findOne({
-	'username': 'fnobi'
-}, 'username password', function (err, user) {
-	if (err) {
-		console.error(err);
-		process.exit();
-	}
-	console.log(
-		'%s:%s',
-		user.username,
-		user.password
-	);
-});
+// User.findOne({
+// 	'username': 'fnobi'
+// }, 'username password', function (err, user) {
+// 	if (err) {
+// 		console.error(err);
+// 		process.exit();
+// 	}
+// 	console.log(
+// 		'%s:%s',
+// 		user.username,
+// 		user.password
+// 	);
+// });
 
 module.exports.User = User;

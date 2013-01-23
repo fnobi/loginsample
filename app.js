@@ -6,6 +6,8 @@ var express         = require('express')
   , passport        = require('passport')
   , LocalStrategy   = require('passport-local').Strategy
   , TwitterStrategy = require('passport-twitter').Strategy
+  , mongoose        = require('mongoose')
+  , MongoStore      = require('connect-mongo')(express)
   , config          = require('config')
   , routes          = require(__dirname + '/routes')
   , http            = require('http')
@@ -65,6 +67,19 @@ app.configure(function(){
 	app.set('view engine', 'jade');
 	app.use(express.favicon());
 	app.use(express.cookieParser());
+	// app.use(express.session({
+	// 	secret: 'topsecret',
+	// 	store: new MongoStore({
+	// 		db: config.mongodb.database,
+	// 		host: config.mongodb.host,
+	// 		clear_interval: 60 * 60 // Interval in seconds to clear expired sessions. 60 * 60 = 1 hour
+	// 	}),
+	// 	cookie: {
+	// 		httpOnly: false,
+	// 		// 60 * 60 * 1000 = 3600000 msec = 1 hour
+	// 		maxAge: new Date(Date.now() + 60 * 60 * 1000)
+	// 	}
+	// }));
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
@@ -99,6 +114,25 @@ app.get('/logout', function(req, res){
 });
 
 require('start-stop-daemon')(function () {
+	mongoose.connect(
+		config.mongodb.host,
+		config.mongodb.database
+	);
+
+	app.use(express.session({
+		secret: 'topsecret',
+		store: new MongoStore({
+			db: config.mongodb.database,
+			host: config.mongodb.host,
+			clear_interval: 60 * 60 // Interval in seconds to clear expired sessions. 60 * 60 = 1 hour
+		}),
+		cookie: {
+			httpOnly: false,
+			// 60 * 60 * 1000 = 3600000 msec = 1 hour
+			maxAge: new Date(Date.now() + 60 * 60 * 1000)
+		}
+	}));
+
 	http.createServer(app).listen(app.get('port'), function(){
 		console.log('Express server listening on port ' + app.get('port'));
 	});
