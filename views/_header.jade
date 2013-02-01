@@ -1,0 +1,23 @@
+header#header
+  h1= appname
+  - if (user) {
+    ul
+      li
+        a(href='/user/' + user.username)= user.username
+      li
+        a(href="/logout") logout
+  - } else {
+    form#login(method="post", action="/login")
+      ul
+        li.input
+          label(name="username") username:
+          input(name="username", type="text", size="15")
+        li.input
+          label(name="password") password:
+          input(name="password", type="password", size="15")
+        li
+          input(type="submit", value="login")
+  - }
+
+
+

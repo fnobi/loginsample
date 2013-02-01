@@ -1,24 +1,22 @@
-extends layout
+extends _layout
 
 block content
-  h1= title
+  h1#pagename Index
   - if (user) {
-    p Welcome, #{user.username} !!
-    p
-      a(href="/logout") logout
+    section
+      p Welcome, #{user.username} !!
   - } else {
-    p
-      | Please, login. or 
-      a(href="/signup") signup
-      | .
-    form(method="post", action="/login")
-      table
-        tr
-          td: label(name="username") username:
-          td: input(name="username", type="text", size="30")
-        tr
-          td: label(name="password") password:
-          td: input(name="password", type="password", size="30")
-        tr
-         td(colspan="2"): input(type="submit")
+    section
+      h1 signup
+      form(method="post", action="/signup")
+        table
+          tr
+            td: label(name="username") username:
+            td: input(name="username", type="text", size="30")
+          tr
+            td: label(name="password") password:
+            td: input(name="password", type="password", size="30")
+          tr
+            td(colspan="2"): input(type="submit")
   - }
+

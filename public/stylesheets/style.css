@@ -63,12 +63,93 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 4, ../sass/style.scss */
+/* line 6, ../sass/style.scss */
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-/* line 8, ../sass/style.scss */
+/* line 10, ../sass/style.scss */
 a {
   color: #ffb700;
+}
+
+/* line 14, ../sass/style.scss */
+#header {
+  background-color: #333;
+  color: white;
+  overflow: hidden;
+  height: 3em;
+  line-height: 3em;
+}
+/* line 21, ../sass/style.scss */
+#header h1 {
+  float: left;
+  padding: 0em 0.5em;
+  border-right: solid 0.1em #888888;
+}
+/* line 27, ../sass/style.scss */
+#header li {
+  float: left;
+  border-right: solid 0.1em #888888;
+  padding: 0em 0.5em;
+  height: 3em;
+  overflow: hidden;
+}
+/* line 35, ../sass/style.scss */
+#header li.input {
+  line-height: 100%;
+}
+/* line 39, ../sass/style.scss */
+#header label {
+  display: block;
+  font-size: 70%;
+}
+
+/* line 45, ../sass/style.scss */
+#main {
+  max-width: 35em;
+  margin: 1em auto;
+}
+/* line 49, ../sass/style.scss */
+#main section {
+  padding: 1em;
+  margin: 0.2em 0em;
+  background-color: #fec;
+}
+/* line 55, ../sass/style.scss */
+#main table {
+  margin: auto;
+}
+/* line 58, ../sass/style.scss */
+#main table td {
+  background-color: white;
+  border-top: solid 0.5em #ffeecc;
+  padding: 0.5em;
+}
+
+/* line 66, ../sass/style.scss */
+#pagename {
+  background-color: #fa0;
+  padding: 0.5em;
+  font-size: 150%;
+  line-height: 1em;
+  font-weight: bold;
+  color: white;
+  overflow: hidden;
+  border-bottom: solid 0.1em white;
+}
+/* line 76, ../sass/style.scss */
+#pagename:before {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  float: left;
+  background-color: #ff0;
+  margin-right: 0.2em;
 }

@@ -67,19 +67,6 @@ app.configure(function(){
 	app.set('view engine', 'jade');
 	app.use(express.favicon());
 	app.use(express.cookieParser());
-	// app.use(express.session({
-	// 	secret: 'topsecret',
-	// 	store: new MongoStore({
-	// 		db: config.mongodb.database,
-	// 		host: config.mongodb.host,
-	// 		clear_interval: 60 * 60 // Interval in seconds to clear expired sessions. 60 * 60 = 1 hour
-	// 	}),
-	// 	cookie: {
-	// 		httpOnly: false,
-	// 		// 60 * 60 * 1000 = 3600000 msec = 1 hour
-	// 		maxAge: new Date(Date.now() + 60 * 60 * 1000)
-	// 	}
-	// }));
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
@@ -94,15 +81,17 @@ app.configure('development', function(){
 	app.use(express.errorHandler());
 });
 
+app.locals({
+	appname: 'loginsample'
+});
+
 app.get('/', routes.index);
-app.get('/login', routes.index);
 app.post('/login', passport.authenticate('local', {
 	failureRedirect: '/login'
 }), function(req, res) {
 	res.redirect('/');
 });
 
-app.get('/signup', routes.signupform);
 app.post('/signup', routes.signup);
 
 app.get('/auth/twitter', passport.authenticate('twitter'));

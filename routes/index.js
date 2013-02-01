@@ -15,12 +15,6 @@ exports.index = function(req, res){
 	});
 };
 
-exports.signupform = function (req, res) {
-	res.render('signup', {
-		title: 'Express'
-	});
-};
-
 exports.signup = function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
