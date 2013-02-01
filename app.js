@@ -102,6 +102,9 @@ app.post('/login', passport.authenticate('local', {
 	res.redirect('/');
 });
 
+app.get('/signup', routes.signupform);
+app.post('/signup', routes.signup);
+
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', passport.authenticate('twitter', {
 	successRedirect: '/',

@@ -7,15 +7,15 @@ block content
     p
       a(href="/logout") logout
   - } else {
-    p Please, login.
+    p
+      | Please, login. or 
+      a(href="/signup") signup
+      | .
     form(method="post", action="/login")
       table
         tr
           td: label(name="username") username:
           td: input(name="username", type="text", size="30")
-        tr
-          td: label(name="email") email:
-          td: input(name="email", type="text", size="30")
         tr
           td: label(name="password") password:
           td: input(name="password", type="password", size="30")

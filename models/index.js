@@ -11,6 +11,12 @@ var UserSchema = new Schema({
 
 var User = mongoose.model('User', UserSchema);
 
+User.find(function (err, users) {
+	users.forEach(function (user) {
+		console.log('%s: %s', user.username, user.password);
+	});
+});
+
 // var user = new User();
 // user.username = 'fnobi';
 // user.password = 'hogehoge';

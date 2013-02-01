@@ -1,5 +1,5 @@
 {
-  "name": "joindebate",
+  "name": "loginsample",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -24,7 +24,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git://github.com/fnobi/joindebate.git"
+    "url": "git://github.com/fnobi/loginsample.git"
   },
   "author": "Fujisawa Shin",
   "license": "BSD"

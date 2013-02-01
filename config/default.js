@@ -2,7 +2,7 @@ module.exports = {
 	port: 3000,
 	mongodb: {
 		host: 'localhost',
-		database: 'joindebate'
+		database: 'loginsample'
 	},
 	twitter: {
 		consummerKey: 'ppShngZALTe0K5QLS6PQ',
