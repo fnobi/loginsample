@@ -116,18 +116,23 @@ a {
   margin: 0.2em 0em;
   background-color: #fec;
 }
-/* line 55, ../sass/style.scss */
+/* line 54, ../sass/style.scss */
+#main section h1 {
+  color: #fa0;
+  font-weight: bold;
+}
+/* line 61, ../sass/style.scss */
 #main table {
   margin: auto;
 }
-/* line 58, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 #main table td {
   background-color: white;
   border-top: solid 0.5em #ffeecc;
   padding: 0.5em;
 }
 
-/* line 66, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 #pagename {
   background-color: #fa0;
   padding: 0.5em;
@@ -138,7 +143,7 @@ a {
   overflow: hidden;
   border-bottom: solid 0.1em white;
 }
-/* line 76, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 #pagename:before {
   content: "";
   display: block;
@@ -152,4 +157,11 @@ a {
   float: left;
   background-color: #ff0;
   margin-right: 0.2em;
+}
+
+/* line 95, ../sass/style.scss */
+#alert p {
+  background-color: #fee;
+  padding: 0.5em;
+  margin: 0.5em;
 }
